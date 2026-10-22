@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="game" width="800" height="400"></canvas>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+let player = {
+    x: 100,
+    y: 200,
+    width: 50,
+    height: 50
+};
+
+let keys = {};
+
+document.addEventListener("keydown", function(event) {
+    keys[event.key] = true;
+});
+
+document.addEventListener("keyup", function(event) {
+    keys[event.key] = false;
+});
+
+function draw() {
+
+    ctx.clearRect(0, 0, 800, 400);
+
+    if (keys["ArrowLeft"]) {
+        player.x -= 5;
+    }
+
+    if (keys["ArrowRight"]) {
+        player.x += 5;
+    }
+
+    if (keys["ArrowUp"]) {
+        player.y -= 5;
+    }
+
+    if (keys["ArrowDown"]) {
+        player.y += 5;
+    }
+
+    ctx.fillStyle = "red";
+
+    ctx.fillRect(
+        player.x,
+        player.y,
+        player.width,
+        player.height
+    );
+
+    requestAnimationFrame(draw);
+}
+
+draw();
+</script>
+
+</body>
+</html>
